@@ -9,14 +9,17 @@ function Food({ name, price }) {
 
 const foodWeLike = [
   {
+    id: 1,
     name: "kimch",
     price: 2000 
   },
-  { 
+  {
+    id: 2,
     name: "doncasu",
     price: 8000
   },
   { 
+    id: 3,
     name: "woodong",
     price: 5000
   }];
@@ -27,8 +30,9 @@ function App() {
       <h1> COOL !!! </h1>
       
       {foodWeLike.map( food => (
-      <Food name={food.name} price={food.price} /> 
+      <Food key={food.id} name={food.name} price={food.price} /> 
       ))}
+
     </div>
   );
 }

@@ -10,7 +10,7 @@
 - JavaScript + HTML
 
 
-#### New Component
+#### Component
 - 같은 파일에서 생성하여 사용 가능
 - 대문자로 시작해야함
 
@@ -89,7 +89,7 @@ const foods = [
     price: 2000
   }];
 
-  // ... inside of components
+  // ... inside of component
   {foods.map( food => (
     <COMPO_NAME name={food.name} price={food.price} />
   ))}
@@ -99,3 +99,22 @@ const foods = [
   //   <COMPO_NAME name={food.name} price={food.price} />
   // })}
 ```
+
+#### Map Recap
+- 반복되는 Component들을 구별하기 위해 key가 필요
+```js
+const foodWeLike = [
+  {
+    id: 1,
+    name: "kimch",
+    price: 2000 
+  },
+  ...
+]
+
+// ... inside of component
+{foodWeLike.map( food => (
+  <Food key={food.id} name={food.name} price={food.price} /> 
+))}
+```
+
