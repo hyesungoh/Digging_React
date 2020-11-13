@@ -118,3 +118,19 @@ const foodWeLike = [
 ))}
 ```
 
+#### Protection with prop-types
+- `prop-types` 설치
+```terminal
+npm i prop-types
+```
+
+- Props의 Type 및 필요 여부를 지정하여 에러 확인 가능하게 해줌
+```js
+import PropTypes from "prop-types";
+
+COMPO_NAME.propTypes = {
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  rating: PropTypes.number
+};
+```

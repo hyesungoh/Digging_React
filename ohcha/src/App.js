@@ -1,28 +1,40 @@
-function Food({ name, price }) {
-  return (
-    <div>
-      <h3>I LOVE { name }</h3>
-      <h5>Its {price} won</h5>
-    </div>
-  )
-}
+import PropTypes from "prop-types";
 
 const foodWeLike = [
   {
     id: 1,
     name: "kimch",
-    price: 2000 
+    price: 2000,
+    rating: 5
   },
   {
     id: 2,
     name: "doncasu",
-    price: 8000
+    price: 8000,
+    rating: 9.9
   },
   { 
     id: 3,
     name: "woodong",
-    price: 5000
+    price: 5000,
+    rating: 3.2
   }];
+
+function Food({ name, price, rating }) {
+  return (
+    <div>
+      <h3>I LOVE { name }</h3>
+      <h4>{ rating }</h4>
+      <h5>Its {price} won</h5>
+    </div>
+  )
+}
+
+Food.propTypes = {
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  rating: PropTypes.number.isRequired
+};
 
 function App() {
   return (
@@ -30,7 +42,7 @@ function App() {
       <h1> COOL !!! </h1>
       
       {foodWeLike.map( food => (
-      <Food key={food.id} name={food.name} price={food.price} /> 
+      <Food key={food.id} name={food.name} price={food.price} rating={food.rating}/> 
       ))}
 
     </div>
