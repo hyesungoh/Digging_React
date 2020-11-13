@@ -68,9 +68,34 @@ function Food({ fav }){
   )
 }
 
-  // ,,, inside parents component
+  // ... inside of parents component
   <Food fav="kimchi" />
   <Food fav="pizza" />
   <Food fav="chicken" />
   <Food fav="beef" />
+```
+
+#### Dynamic Component Generation
+
+- 동적으로 Component를 Props와 함께 사용하는 방법
+```js
+const foods = [
+  {
+    name: "brrbrr",
+    price: 1200
+  },
+  {
+    name: "kimchi",
+    price: 2000
+  }];
+
+  // ... inside of components
+  {foods.map( food => (
+    <COMPO_NAME name={food.name} price={food.price} />
+  ))}
+
+  // old js version
+  // {foods.map(function(food) {
+  //   <COMPO_NAME name={food.name} price={food.price} />
+  // })}
 ```
