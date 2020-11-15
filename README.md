@@ -10,3 +10,7 @@
 - #### [Props](https://github.com/hyesungoh/React_with_NomadCoders/tree/master/ohcha#props)
 
 - #### [Dynamic Component Generation](https://github.com/hyesungoh/React_with_NomadCoders/tree/master/ohcha#dynamic-component-generation)
+
+- #### [Map Recap](https://github.com/hyesungoh/React_with_NomadCoders/tree/master/ohcha#map-recap)
+
+- #### [Protection with prop-types](https://github.com/hyesungoh/React_with_NomadCoders/tree/master/ohcha#protection-with-prop-types)

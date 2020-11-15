@@ -39,7 +39,7 @@ Food.propTypes = {
 function App() {
   return (
     <div className="App">
-      <h1> COOL !!! </h1>
+      <h1> 스리사랑행 </h1>
       
       {foodWeLike.map( food => (
       <Food key={food.id} name={food.name} price={food.price} rating={food.rating}/> 
