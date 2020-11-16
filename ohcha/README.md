@@ -237,7 +237,7 @@ import axios from "axios";
 axios.get("blahblah.json");
 ```
 
-#### async & await
+#### Async & Await
 
 -   JS es6의 비동기적 실행 방법
 
@@ -247,7 +247,7 @@ functionName = async () => {
 };
 ```
 
-#### get Movie data
+#### Get movie data
 
 -   yts api는 주소가 자주 바뀌어 nomadcoders가 자체제작한 api 사용
 
