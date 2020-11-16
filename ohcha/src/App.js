@@ -1,29 +1,51 @@
 import PropTypes from "prop-types";
 import React from "react";
 import axios from "axios";
+import Movie from "./Movie";
 
-class App extends React.Component{
-  state = {
-    isLoading: true,
-    movies: []
-  };
+class App extends React.Component {
+    state = {
+        isLoading: true,
+        movies: [],
+    };
 
-  getMovies = async () => {
-    const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
-  }
+    getMovies = async () => {
+        const {
+            data: {
+                data: { movies },
+            },
+        } = await axios.get(
+            "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
+        );
 
-  componentDidMount() {
-    this.getMovies();
-  }
+        this.setState({ movies, isLoading: false });
+    };
 
-  render() {
-    const { isLoading } = this.state;
-    return (
-      <div>
-        {isLoading ? "loading..." : "loaded"}
-      </div>
-    )
-  }
+    componentDidMount() {
+        this.getMovies();
+    }
+
+    renderMovies = (movie) => {
+        return (
+            <Movie
+                key={movie.id}
+                id={movie.id}
+                title={movie.title}
+                year={movie.year}
+                summary={movie.summary}
+                poster={movie.medium_cover_image}
+            />
+        );
+    };
+
+    render() {
+        const { isLoading, movies } = this.state;
+        return (
+            <div>
+                {isLoading ? "loading..." : movies.map(this.renderMovies)}
+            </div>
+        );
+    }
 }
 
 export default App;
