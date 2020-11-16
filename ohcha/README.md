@@ -179,6 +179,20 @@ add = () => {
   this.setState(current => ({ count: current.count + 1 }))
 }
 ```
+- 미리 변수를 생성하여 짧게 사용 가능
+```js
+...in class
+state = {
+  name : "hyesung"
+}
+
+render() {
+  const { name } = this.state;
+  return <h1> { name } </h1>
+  // this.state.name와 동일
+}
+```
+
 
 #### Life Cycle of Component
 - Mounting
