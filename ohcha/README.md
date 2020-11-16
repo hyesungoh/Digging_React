@@ -134,3 +134,59 @@ COMPO_NAME.propTypes = {
   rating: PropTypes.number
 };
 ```
+
+#### Class Component
+- class 형태로 component를 사용해야 state를 사용할 수 있음
+- 재사용성 또한 좋아짐
+```js
+import React from "react";
+
+class App extends React.Component {
+  render() {
+    return (something JSX)
+  }
+}
+```
+
+#### State
+- class 안에서 사용가능
+- 아래와 같이 JSX에서 사용 가능
+```js
+class App extends React.Component {
+  state = {
+    number: 1
+  };
+
+  render() {
+    return (
+      <h1> Number = { this.state.number } </h1>
+    )
+  }
+}
+```
+- setState를 이용하여 값을 변경 가능
+- setState 후 자동으로 render 호출, 변경된 값만 update됨
+```js
+...in class
+add = () => {
+  // 직접적으로 변경하여 render가 호출되지 않아 변경점이 보이지 않음
+  // this.state.count = 1;
+
+  // 직접적으로 state를 가져와서 사용하는 방법은 권장되지 않음
+  // this.setState({ count: this.state.count + 1 });
+
+  // current를 함수 형식으로 사용 권장
+  this.setState(current => ({ count: current.count + 1 }))
+}
+```
+
+#### Life Cycle of Component
+- Mounting
+  1. constructor
+  1. render
+  1. componentDidMount 
+- Updating
+  1. render
+  1. componentDidUpdate
+- Unmounting
+  1. componentWillUnmount
