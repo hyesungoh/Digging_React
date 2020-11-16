@@ -204,3 +204,23 @@ render() {
   1. componentDidUpdate
 - Unmounting
   1. componentWillUnmount
+
+#### Axios
+- JS fetch의 상위 호환같은 느낌?
+```terminal
+npm i axios
+```
+```js
+import axios from "axios";
+
+...somewhere
+axios.get("blahblah.json");
+```
+
+#### async & await
+- JS es6의 비동기적 실행 방법
+```js
+functionName = async () => {
+    const something = await axios.get("blahblah.json");
+  }
+```
