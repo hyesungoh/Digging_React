@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React from "react";
 import axios from "axios";
 import Movie from "./Movie";
@@ -35,6 +34,7 @@ class App extends React.Component {
                 year={movie.year}
                 summary={movie.summary}
                 poster={movie.medium_cover_image}
+                genres={movie.genres}
             />
         );
     };
@@ -42,13 +42,13 @@ class App extends React.Component {
     render() {
         const { isLoading, movies } = this.state;
         return (
-            <section class="container">
+            <section className="container">
                 {isLoading ? (
-                    <div class="loader">
-                        <span class="loader__text">Loading ...</span>
+                    <div className="loader">
+                        <span className="loader__text">Loading ...</span>
                     </div>
                 ) : (
-                    <div class="movies">
+                    <div className="movies">
                         {movies.map(this.renderMovies)}
                     </div>
                 )}

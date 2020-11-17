@@ -306,7 +306,7 @@ renderMovies = (movie) => {
 
 render() {
       // isLoading과 movies는 this.state 안에 있는 것이라고 명시
-      const { isLoading, movies } = this.state; 
+      const { isLoading, movies } = this.state;
 
       // 삼항연산자를 이용하여 api data get 유무를 파악 후 함수 실행
       return (
@@ -318,14 +318,47 @@ render() {
 ```
 
 #### Css with React
-- 파일을 만든 후 `import`하여 사용가능
+
+-   파일을 만든 후 `import`하여 사용가능
+
 ```js
 // src/App.js
-import "./cssFileName.css"
+import "./cssFileName.css";
 ```
+
 ```css
 /* src/App.css */
 body {
     background-color: red;
 }
+```
+
+#### Using array data
+
+-   string으로 이루어진 array라고 PropTypes 사용
+
+```js
+Movie.propTypes = {
+...
+genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+}
+```
+
+- array data를 map을 이용하여 ul 형태로 작성
+
+```js
+// "genres": [
+//           "Adventure",
+//           "Drama",
+//           "Family",
+//           "Mystery",
+//           "Sci-Fi"
+//         ],
+
+//map 함수에서 필요로 하는 key 값을 index를 사용
+<ul className="genres">
+    {genres.map((genre, index) => (
+        <li key={index} className="genres__genre">{genre}</li>
+    ))}
+</ul>
 ```
