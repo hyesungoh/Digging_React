@@ -316,3 +316,16 @@ render() {
       );
   }
 ```
+
+#### Css with React
+- 파일을 만든 후 `import`하여 사용가능
+```js
+// src/App.js
+import "./cssFileName.css"
+```
+```css
+/* src/App.css */
+body {
+    background-color: red;
+}
+```
