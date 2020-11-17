@@ -344,7 +344,7 @@ genres: PropTypes.arrayOf(PropTypes.string).isRequired,
 }
 ```
 
-- array data를 map을 이용하여 ul 형태로 작성
+-   array data를 map을 이용하여 ul 형태로 작성
 
 ```js
 // "genres": [
@@ -358,7 +358,9 @@ genres: PropTypes.arrayOf(PropTypes.string).isRequired,
 //map 함수에서 필요로 하는 key 값을 index를 사용
 <ul className="genres">
     {genres.map((genre, index) => (
-        <li key={index} className="genres__genre">{genre}</li>
+        <li key={index} className="genres__genre">
+            {genre}
+        </li>
     ))}
 </ul>
 ```
