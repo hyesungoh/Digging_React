@@ -30,3 +30,7 @@
 - ##### [Movie function component](https://github.com/hyesungoh/React_with_NomadCoders/tree/master/ohcha#movie-function-component)
 
 - ##### [Render Movies](https://github.com/hyesungoh/React_with_NomadCoders/tree/master/ohcha#render-movies)
+
+- ##### [Css with React](https://github.com/hyesungoh/React_with_NomadCoders/tree/master/ohcha#css-with-react)
+
+- ##### [Using array data](https://github.com/hyesungoh/React_with_NomadCoders/tree/master/ohcha#using-array-data)
