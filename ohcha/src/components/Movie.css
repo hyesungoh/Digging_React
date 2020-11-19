@@ -1,0 +1,86 @@
+.movies {
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+}
+
+.movie {
+    background-color: #d1d8e0;
+    display: flex;
+    max-width: 35%;
+    height: 210px;
+
+    margin: 20px;
+    margin-top: 40px;
+
+    display: flex;
+    align-items: center;
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.movie:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.movie * {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.movie img {
+    top: -10px;
+    left: -10px;
+    position: relative;
+
+    max-width: 200px;
+    max-height: 200px;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+.movie__title {
+    color: black;
+    font-size: 18px;
+    margin: 0;
+    margin-top: 10px;
+}
+
+.movie__year {
+    margin: 0;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.genres {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    margin-top: 5px;
+
+    display: flex;
+    align-items: flex-start;
+}
+.genres__genre {
+    margin: 0px 3px 0px 0px;
+}
+
+@media screen and (max-width: 1000px) {
+    .movies {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .movie {
+        max-width: 80%;
+    }
+}
