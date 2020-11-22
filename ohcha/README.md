@@ -412,3 +412,35 @@ function App() {
     <Route path="/about" component={About} />
 </HashRouter>
 ```
+
+#### Navigation
+
+-   navigation component
+
+```jsx
+<HashRouter>
+    <Navigation />
+    <Route path="/somepath" component={something} />
+    ...
+</HashRouter>
+```
+
+-   link, to
+
+```jsx
+// <a href="">는 html을 초기화하기 때문에 작동하지 않음
+// Link는 Router안에 있어야 사용가능
+<Link to="/">Home</Link>
+<Link to="/about">About</Link>
+```
+
+- BrowserRouter vs HashRouter
+```browser
+<!-- in HashRouter -->
+/#/something
+
+<!-- in BrowserRouter -->
+/something
+
+<!-- HashRouter는 Gh pages 사용 시 편하다고 함 -->
+```
