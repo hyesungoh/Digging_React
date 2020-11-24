@@ -11,6 +11,10 @@
     gap: 50px;
 }
 
+.moveis > a {
+    all: unset;
+}
+
 .movie {
     background-color: #d1d8e0;
     display: flex;
