@@ -434,7 +434,8 @@ function App() {
 <Link to="/about">About</Link>
 ```
 
-- BrowserRouter vs HashRouter
+-   BrowserRouter vs HashRouter
+
 ```browser
 <!-- in HashRouter -->
 /#/something
@@ -443,4 +444,48 @@ function App() {
 /something
 
 <!-- HashRouter는 Gh pages 사용 시 편하다고 함 -->
+```
+
+#### Sharing props between Routes
+
+-   link, to에 object를 이용할 수 있음
+
+```jsx
+function Movie({ id, title, year, summary, poster, genres }) {
+    return (
+        <Link
+            to={{
+                // 이동할 곳
+                pathname: `/movie/${id}`,
+                // state를 이용
+                state: {
+                    title,
+                    year,
+                    summary,
+                    poster,
+                    genres
+                }
+            }}
+        >
+    ...something
+}
+```
+
+-   해당 route의 props.location에 state 위치
+
+#### Redirecting
+
+-   state 상태를 확인 후 history의 push를 이용하여 url을 이동시킬 수 있음
+
+```jsx
+class Detail extends React.Component {
+    componentDidMount() {
+        const { location, history } = this.props;
+        if (location.state === undefined) {
+            history.push("/");
+        }
+    }
+
+    ...something
+}
 ```
