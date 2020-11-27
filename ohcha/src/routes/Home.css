@@ -1,9 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap");
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
 body {
+    top: 0;
+    left: 0;
     font-family: "Roboto", sans-serif;
 
-    background-color: #a5b1c2;
+    background-color: #dfe6e9;
 }
 .loader {
     top: 0;
@@ -14,6 +23,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #dfe6e9;
+    opacity: 0;
+    z-index: -100;
+    transition: all .8s;
+}
+
+.show {
+    z-index: 100;
+    opacity: 1;
 }
 
 .loader__text {

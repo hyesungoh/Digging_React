@@ -1,0 +1,35 @@
+.footer {
+    display: flex;
+    width: 100vw;
+    height: 20vh;
+    background-color: #dfe6e9;
+    padding: 30px 12%;
+
+    justify-content: space-between;
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.footer__data ul {
+    list-style: none;
+    opacity: 0.5;
+}
+
+.footer__data ul li {
+    margin-bottom: 5px;
+}
+
+.footer__right span {
+    opacity: 0.5;
+}
+
+@media screen and (max-width: 1024px) {
+    .footer {
+        margin-top: 20px;
+        height: 25vh;
+    }
+
+    .footer * {
+        font-size: 12px;
+    }
+}

@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import Movie from "../components/Movie";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import "./Home.css";
 
 class Home extends React.Component {
@@ -35,6 +37,7 @@ class Home extends React.Component {
                 summary={movie.summary}
                 poster={movie.medium_cover_image}
                 genres={movie.genres}
+                large_poster={movie.large_cover_image}
             />
         );
     };
@@ -43,15 +46,12 @@ class Home extends React.Component {
         const { isLoading, movies } = this.state;
         return (
             <section className="container">
-                {isLoading ? (
-                    <div className="loader">
-                        <span className="loader__text">Loading ...</span>
-                    </div>
-                ) : (
-                    <div className="movies">
-                        {movies.map(this.renderMovies)}
-                    </div>
-                )}
+                <div className={`loader ${isLoading ? "show" : ""}`}>
+                    <span className="loader__text">Loading ...</span>
+                </div>
+                <Header />
+                <div className="movies">{movies.map(this.renderMovies)}</div>
+                <Footer />
             </section>
         );
     }
