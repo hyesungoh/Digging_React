@@ -10,8 +10,7 @@
 
 ![desk](https://user-images.githubusercontent.com/26461307/100463907-f0411680-310f-11eb-853b-3eb783c0ef15.gif)
 
-![mob](https://user-images.githubusercontent.com/26461307/100463912-f20ada00-310f-11eb-8e0f-14e4b6b63a35.gif)
-
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/26461307/100544524-a2f0b080-3299-11eb-9a7f-7527a74a53cc.gif)
 </div>
 
 ---
