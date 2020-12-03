@@ -8,7 +8,7 @@ state와 life cycle을 확인하기 위해 class component를 사용해 왔지�
 
 ---
 
-#### useEffect
+#### Basic useEffect
 
 ```jsx
 useEffect(function);
@@ -27,3 +27,35 @@ useEffect(function, [];)
 ```
 
 -   componentDidMount만 사용하고 싶을 시 빈 인자를 사용하면 됨
+
+#### useTitle
+
+-   html head의 title을 mount, update
+
+```jsx
+const useTitle = (initialTitle) => {
+    const [title, setTitle] = useState(initialTitle);
+
+    // html head의 title의 값을 바꿈
+    const updateTitle = () => {
+        const htmlTitle = document.querySelector("title");
+        htmlTitle.innerText = title;
+    };
+
+    useEffect(updateTitle, [title]); // state인 title이 변경 시 updateTitle 함수 호출
+    return setTitle;
+};
+
+const App = () => {
+    const titleUpdater = useTitle("Loading..");
+    // setTimeout(() => {
+    //     titleUpdater("HOME");
+    // }, 3000);
+
+    return (
+        <div className="App">
+            <h1> hello </h1>
+        </div>
+    );
+};
+```
