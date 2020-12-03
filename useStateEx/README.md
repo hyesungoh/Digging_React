@@ -4,6 +4,8 @@ state와 life cycle을 확인하기 위해 class component를 사용해 왔지�
 
 덕분에 hook들을 이용하여 함수형 component를 사용하여 state와 life cycle 제어가 가능하게 됨
 
+#### useEffect 보러가기
+
 ---
 
 #### useState
