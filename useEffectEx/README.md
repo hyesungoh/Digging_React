@@ -59,3 +59,61 @@ const App = () => {
     );
 };
 ```
+
+#### useRef
+
+-   document.getElementById와 같이 사용가능
+
+```jsx
+const something = useRef();
+
+<input ref={something} />;
+```
+
+#### useEffect > componentWillUnMount
+
+-   useEffect에 fucntion을 사용 시 mount, update 때 호출 됨
+
+-   해당 function의 반환 값이 componentWillUnMount 때 호출 됨
+
+```jsx
+useEffect(() => {
+    console.log("Mount");
+    return () => console.log("UnMount);
+});
+```
+
+#### useClick
+```jsx
+const useClick = (onClick) => {
+    // Click을 감지할 요소
+    const checkItem = useRef();
+
+    // componentDidMount시 EventListener를 부착
+    useEffect(() => {
+        if (checkItem.current) {
+            checkItem.current.addEventListener("click", onClick);
+        }
+
+    // componentWillUnMount시 EventListener 탈착
+        return () => {
+            if (checkItem.current) {
+                checkItem.current.removeEventListener("click", onClick);
+            }
+        };
+    }, []);
+
+    return checkItem;
+};
+
+const App = () => {
+    // Click 시 호출될 함수
+    const sayHello = () => console.log("hello");
+    const title = useClick(sayHello);
+    return (
+        <div className="App">
+            <h1 ref={title}> hello </h1>
+        </div>
+    );
+};
+```
