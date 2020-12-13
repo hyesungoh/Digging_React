@@ -84,6 +84,7 @@ useEffect(() => {
 ```
 
 #### useClick
+
 ```jsx
 const useClick = (onClick) => {
     // Click을 감지할 요소
@@ -95,7 +96,7 @@ const useClick = (onClick) => {
             checkItem.current.addEventListener("click", onClick);
         }
 
-    // componentWillUnMount시 EventListener 탈착
+        // componentWillUnMount시 EventListener 탈착
         return () => {
             if (checkItem.current) {
                 checkItem.current.removeEventListener("click", onClick);
@@ -113,6 +114,72 @@ const App = () => {
     return (
         <div className="App">
             <h1 ref={title}> hello </h1>
+        </div>
+    );
+};
+```
+
+#### useConfirm
+
+-   window.confirm을 이용하여 간단한 함수형 useConfirm 작성
+
+```jsx
+const useConfirm = (message = "", onTrue, onFalse) => {
+    // 함수가 존재하지 않거나 형식이 함수일 때
+    if (!onTrue || typeof onTrue !== "function") {
+        return;
+    }
+    if (!onFalse || typeof onFalse !== "function") {
+        return;
+    }
+
+    const confirmAction = () => {
+        if (window.confirm(message)) {
+            onTrue();
+        } else {
+            onFalse();
+        }
+    };
+    return confirmAction;
+};
+
+const App = () => {
+    const deleteWorld = () => console.log("DELETE THE WORLD");
+    const saveWorld = () => console.log("SAVE THE WORLD ONE MORE");
+    const confirmer = useConfirm("진짜루..?", deleteWorld, saveWorld);
+
+    return (
+        <div className="App">
+            <button onClick={confirmer}>DELETE WORLD</button>
+        </div>
+    );
+};
+```
+
+#### usePreventLeave
+
+-   `beforeunload` 를 이용하여 사용자가 웹을 나갈 때 확인 가능
+
+```jsx
+const usePreventLeave = () => {
+    const listener = (event) => {
+        event.preventDefault();
+        event.returnValue = "";
+    };
+    const enablePrevent = () =>
+        window.addEventListener("beforeunload", listener);
+    const disablePrevent = () =>
+        window.removeEventListener("beforeunload", listener);
+
+    return { enablePrevent, disablePrevent };
+};
+
+const App = () => {
+    const { enablePrevent, disablePrevent } = usePreventLeave();
+    return (
+        <div className="App">
+            <button onClick={enablePrevent}>PROTECT</button>
+            <button onClick={disablePrevent}>UNPROTECT</button>
         </div>
     );
 };
