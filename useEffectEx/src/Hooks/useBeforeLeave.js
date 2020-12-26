@@ -15,6 +15,7 @@ const useBeforeLeave = (action) => {
         return () => document.removeEventListener("mouseleave", handle);
     }, []);
 
+    // useEffect가 호출안되는 경우 존재시 에러 발생
     if (typeof action !== "function") {
         return;
     }
