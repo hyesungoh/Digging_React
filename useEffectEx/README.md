@@ -222,3 +222,170 @@ const App = () => {
     );
 };
 ```
+
+#### useFadeIn
+
+-   ref의 style을 직접적으로 수정 및 transition을 추가하도록 작성
+
+```jsx
+const useFadeIn = (duration = 1, delay = 0) => {
+    const element = useRef();
+    useEffect(() => {
+        if (element.current) {
+            const { current } = element;
+            current.style.transition = `opacity ${duration}s ease-in-out ${delay}s`;
+            current.style.opacity = 1;
+        }
+    }, []);
+
+    if (typeof duration !== "number" || typeof delay !== "number") {
+        return;
+    }
+
+    return { ref: element, style: { opacity: 0 } };
+};
+
+const App = () => {
+    const fadeInH1 = useFadeIn();
+
+    return (
+        <div className="App">
+            <h1 {...fadeInH1}>hello</h1>
+        </div>
+    );
+};
+```
+
+#### useNetwork
+
+-   online, offline event를 확인하여 함수 실행 및 setState하도록 작성
+
+```jsx
+const useNetwork = (onChange) => {
+    const [status, setStatus] = useState(navigator.onLine);
+
+    const handleChange = () => {
+        if (typeof onChange === "function") {
+            onChange(navigator.onLine);
+        }
+        setStatus(navigator.onLine);
+    };
+
+    useEffect(() => {
+        window.addEventListener("online", handleChange);
+        window.addEventListener("offline", handleChange);
+
+        return () => {
+            window.removeEventListener("online", handleChange);
+            window.removeEventListener("offline", handleChange);
+        };
+    }, []);
+
+    return status;
+};
+
+const App = () => {
+    const onNetworkChange = (isOnline) => {
+        console.log(isOnline ? "Im online" : "OFFLINE");
+    };
+    const isOnline = useNetwork(onNetworkChange);
+
+    return (
+        <div className="App">
+            <h1>{isOnline ? "ONLINE" : "OFFLINE"}</h1>
+        </div>
+    );
+};
+```
+
+#### useScroll
+
+-   scroll event와 window의 scroll 좌표를 이용하여 작성
+
+```jsx
+
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+
+    const handleScroll = () => {
+        setPosition({
+            x: window.scrollX,
+            y: window.scrollY,
+        });
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
+    return position;
+};
+
+const App = () => {
+    const { y } = useScroll();
+
+    return (
+        <div className="App" style={{ height: "1000vh" }}>
+            <h1 style={{ position: "fixed" }}>
+                {y > 200 ? "over 200" : "under 200"}
+            </h1>
+        </div>
+    );
+};
+
+```
+
+#### useFullScreen
+
+-   requestFullscreen을 이용하여 해당 ref를 전체화면으로 하도록 작성
+-   함수를 매개변수로 받아 활용
+
+```jsx
+const useFullScreen = (callback) => {
+    const element = useRef();
+    const runCB = (isFull) => {
+        if (callback && typeof callback === "function") {
+            callback(isFull);
+        }
+    };
+
+    const enterFullScreen = () => {
+        if (element.current) {
+            element.current.requestFullscreen();
+            // firefox mozRequestFullscreen
+            // opera webkitRequestFullscreen
+            // ms msRequestFullscreen
+            runCB(true);
+        }
+    };
+    const exitFullScreen = () => {
+        document.exitFullscreen();
+        runCB(false);
+    };
+
+    return { element, enterFullScreen, exitFullScreen };
+};
+
+const App = () => {
+    const onFullScreen = (isFullScreen) => {
+        console.log(isFullScreen ? "im full" : "im not full");
+    };
+    const { element, enterFullScreen, exitFullScreen } = useFullScreen(
+        onFullScreen
+    );
+
+    return (
+        <div className="App">
+            <h1>hello</h1>
+            <div ref={element} style={{ backgroundColor: "blue" }}>
+                <button onClick={exitFullScreen}>exit full</button>
+            </div>
+
+            <button onClick={enterFullScreen}>enter full</button>
+        </div>
+    );
+};
+```
