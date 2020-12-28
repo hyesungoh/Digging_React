@@ -1,4 +1,4 @@
-# [Nomad Coders](https://nomadcoders.co/)와 함께 React 배우기
+# Learning React log
 
 ## Movie Web - [Oh-cha](https://github.com/hyesungoh/Ohcha#%EC%99%84%EC%84%B1%EB%B3%B8)
 
