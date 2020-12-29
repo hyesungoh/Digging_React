@@ -432,3 +432,64 @@ const App = () => {
 };
 ```
 
+#### useAxios
+
+-   axios의 defaultAxios를 이용, loading, data, error와 refetch 함수를 반환
+-   useEffect의 dependency를 이용하여 refetch
+
+```jsx
+const useAxios = (options, axiosInstance = defaultAxios) => {
+    const [state, setState] = useState({
+        loading: true,
+        data: null,
+        error: null,
+    });
+    const [trigger, setTrigger] = useState(0);
+
+    const refetch = () => {
+        setState({
+            ...state,
+            loading: true,
+        });
+
+        setTrigger(Date.now());
+    };
+
+    useEffect(() => {
+        axiosInstance(options)
+            .then((data) => {
+                setState({
+                    ...state,
+                    loading: false,
+                    data,
+                });
+            })
+            .catch((error) => {
+                setState({
+                    ...state,
+                    loading: false,
+                    error,
+                });
+            });
+    }, [trigger]);
+
+    if (!options.url) {
+        return;
+    }
+
+    return { ...state, refetch };
+};
+
+const App = () => {
+    const { loading, data, error, refetch } = useAxios({
+        url: "some.url",
+    });
+    return (
+        <div className="App">
+            <h1>{data ? { data } : "not yet"}</h1>
+            <h2>{loading ? "Loading,,," : "Loaded"}</h2>
+            <button onClick={refetch}>Refetch</button>
+        </div>
+    );
+};
+```
